@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
     // ログイン画面を表示
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("_token", request.getSession().getId());
-        request.setAttribute("haserror", false);
+        request.setAttribute("hasError", false);
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
         if(!check_result) {
             // 認証できなかったらログイン画面に戻る
             request.setAttribute("_token", request.getSession().getId());
-            request.setAttribute("haserror", true);
+            request.setAttribute("hasError", true);
             request.setAttribute("code", code);
 
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login/login.jsp");
